@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# This project is licensed under the MIT License (see LICENSE).
+
+set -euo pipefail
+
+readonly VERSION=
+
+readonly default_config='[DEFAULT]
+lowercase=true
+uppercase=true
+digits=true
+symbols=true'
+
+config="${PASSLESS_CONFIG:-$HOME/.passless.ini.gpg}"
+
+decrypted=
+trap 'rm -f "$decrypted"' EXIT INT TERM
+
+usage() {
+    echo 'usage: passless [options] [SITE]
+
+options:
+  -h         Show help message
+  -f CONFIG  Path to config file
+  -i FILE    Encrypt existing file
+  -e         Edit config file
+  -c         Copy password to clipboard
+  -v         Show version'
+}
+
+decrypt() {
+    decrypted=$(mktemp)
+    gpg -d "$config" > "$decrypted" 2> /dev/null
+}
+
+encrypt() {
+    gpg --default-recipient-self -o "$config" -e "${1-$decrypted}"
+}
+
+edit_config() {
+    if [[ ! -e "$config" ]]; then
+        decrypted=$(mktemp)
+        echo "$default_config" > "$decrypted"
+    else
+        decrypt
+    fi
+    $EDITOR "$decrypted"
+    encrypt
+}
+
+handle_bool() {
+    [[ "$1" == true ]] && echo "$2" || echo "$3"
+}
+
+generate_password() {
+    local login=''
+    local args=''
+    local opts
+
+    decrypt
+    opts="$(iniq -p "${1//\./\\.}" -f '%k=%v' "$decrypted")"
+
+    while IFS='=' read -r k v; do
+        case $k in
+            login) login="$v" ;;
+            length) args+=" -L $v" ;;
+            counter) args+=" -C $v" ;;
+            lowercase) args+=" $(handle_bool "$v" '-l' '--no-lowercase')" ;;
+            uppercase) args+=" $(handle_bool "$v" '-u' '--no-uppercase')" ;;
+            digits) args+=" $(handle_bool "$v" '-d' '--no-digits')" ;;
+            symbols) args+=" $(handle_bool "$v" '-s' '--no-symbols')" ;;
+            *)
+                echo "Invalid key: $k" >&2
+                exit 1
+        esac
+    done <<< "$opts"
+
+    lesspass "$1" "$login" "${copy+-c}" $args
+    exit
+}
+
+while getopts ':hf:i:ecv' opt; do
+    case "$opt" in
+        h) usage; exit ;;
+        f) config="$OPTARG" ;;
+        i) encrypt "$OPTARG" ;;
+        e) edit_config; exit ;;
+        c) copy=true ;;
+        v) echo "$VERSION"; exit ;;
+        *) usage >&2; exit 2
+    esac
+done
+
+shift $((OPTIND - 1))
+
+if [[ ! -e "$config" ]]; then
+    echo "$config does not exist; use '-e' to create it" >&2
+    exit 1
+fi
+
+[[ $# -gt 0 ]] && generate_password "$1"
+
+if ${copy-false}; then
+    echo "'-c' requires a site to be specified" >&2
+    usage >&2
+    exit 2
+fi
+
+decrypt
+iniq -d "$decrypted"

@@ -1,0 +1,113 @@
+=head1 NAME
+
+passless - declarative password manager
+
+=head1 SYNOPSIS
+
+B<passless> [options] [SITE]
+
+=head1 DESCRIPTION
+
+passless manages a user-edited GPG-encrypted file containing arguments for the
+B<lesspass> command-line client.
+
+=head1 OPTIONS
+
+=over
+
+=item B<-h>
+
+Show help message.
+
+=item B<-f> I<CONFIG>
+
+Path to configuration file.
+
+=item B<-i> I<FILE>
+
+Encrypt existing file.
+
+=item B<-e>
+
+Edit config file.
+
+=item B<-c>
+
+Copy password to clipboard. Requires a site to be specified.
+
+=item B<-v>
+
+Show version.
+
+=back
+
+=head1 CONFIGURATION
+
+The configuration file is an INI file where section names are sites
+and section keys correspond to B<lesspass> command-line arguments.
+
+If a configuration file doesn't exist, the I<-e> flag will create one using a
+default template.
+
+An existing plain configuration file can be encrypted using the I<-i> flag.
+
+Example:
+
+ [example.com]
+ login=myusername
+ symbols=false
+ counter=2
+
+See below for valid keys.
+
+=over
+
+=item I<login=>
+
+The site login.
+Corresponds to B<lesspass> I<LOGIN> argument.
+
+=item I<length=>
+
+The generated password length.
+Corresponds to B<lesspass> I<--length> flag.
+
+=item I<counter=>
+
+Password counter.
+Corresponds to B<lesspass> I<--counter> flag.
+
+=item I<lowercase=>
+
+Include lowercase in password if set to I<true>.
+Corresponds to B<lesspass> I<--lowercase> or I<--no-lowercase> flags.
+
+=item I<uppercase=>
+
+Include uppercase in password if set to I<true>.
+Corresponds to B<lesspass> I<--uppercase> or I<--no-uppercase> flags.
+
+=item I<digits=>
+
+Include digits in password if set to I<true>.
+Corresponds to B<lesspass> I<--digits> or I<--no-digits> flags.
+
+=item I<symbols=>
+
+Include symbols in password if set to I<true>.
+Corresponds to B<lesspass> I<--symbols> or I<--no-symbols> flags.
+
+=back
+
+=head1 AUTHOR
+
+James Reed E<lt>jcrd@tuta.ioE<gt>
+
+=head1 REPORTING BUGS
+
+Bugs and issues can be reported here:
+L<https://github.com/jcrd/passless/issues>
+
+=head1 COPYRIGHT
+
+Copyright 2019 James Reed. passless is licensed under the MIT License.
