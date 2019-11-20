@@ -54,6 +54,7 @@ handle_bool() {
 }
 
 generate_password() {
+    local master=''
     local login=''
     local args=''
     local opts
@@ -63,6 +64,7 @@ generate_password() {
 
     while IFS='=' read -r k v; do
         case $k in
+            master_password) master="$v" ;;
             login) login="$v" ;;
             length) args+=" -L $v" ;;
             counter) args+=" -C $v" ;;
@@ -76,7 +78,9 @@ generate_password() {
         esac
     done <<< "$opts"
 
-    lesspass "$1" "$login" "${copy+-c}" $args
+    args="$1 $login $master ${copy+-c} $args"
+
+    lesspass $args
     exit
 }
 
