@@ -31,11 +31,22 @@ options:
 
 decrypt() {
     decrypted=$(mktemp)
-    gpg -d "$config" > "$decrypted" 2> /dev/null
+
+    if [[ -n "${PASSLESS_PLAIN_FILE-}" ]]; then
+        cat "$config" > "$decrypted"
+    else
+        gpg -d "$config" > "$decrypted" 2> /dev/null
+    fi
 }
 
 encrypt() {
-    gpg --default-recipient-self -o "$config" -e "${1-$decrypted}"
+    local f="${1-$decrypted}"
+
+    if [[ -n "${PASSLESS_PLAIN_FILE-}" ]]; then
+        cat "$f" > "$config"
+    else
+        gpg --default-recipient-self -o "$config" -e "$f"
+    fi
 }
 
 edit_config() {
