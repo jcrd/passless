@@ -12,7 +12,7 @@ uppercase=true
 digits=true
 symbols=true'
 
-config="${PASSLESS_CONFIG:-$HOME/.passless.ini.gpg}"
+config="${PASSLESS_CONFIG:-$HOME/.passless.conf.gpg}"
 
 decrypted=
 trap 'rm -f "$decrypted"' EXIT INT TERM
