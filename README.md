@@ -13,6 +13,7 @@ options:
   -f CONFIG  Path to config file
   -i FILE    Encrypt existing file
   -e         Edit config file
+  -l LOGIN   Get password of SITE with given login
   -c         Copy password to clipboard
   -v         Show version
 ```

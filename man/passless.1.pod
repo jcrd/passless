@@ -31,6 +31,10 @@ Encrypt existing file.
 
 Edit config file.
 
+=item B<-l> I<LOGIN>
+
+Get password of I<SITE> with given login.
+
 =item B<-c>
 
 Copy password to clipboard. Requires a site to be specified.

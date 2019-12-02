@@ -16,7 +16,9 @@ export LESSPASS_MASTER_PASSWORD=test_password
 test_expect_success 'List sites' '
 test "$(passless)" = "example.com
 false.com
-master.net"
+master.net
+samesite.com
+samesite.com"
 '
 
 test_expect_success 'Test example.com' '
@@ -31,6 +33,11 @@ test "$(passless false.com)" = "$(lesspass false.com name \
 
 test_expect_success 'Test master.net' '
 test "$(passless master.net)" = "$(lesspass master.net login best_password)"
+'
+
+test_expect_success 'Get site by login' '
+test "$(passless -l login2 samesite.com)" = "$(lesspass samesite.com login2 \
+    --no-symbols)"
 '
 
 test_done
