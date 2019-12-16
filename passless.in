@@ -72,7 +72,10 @@ get_section() {
     local n
 
     shift
-    n="$(iniq -p "$name" -n "$decrypted")"
+    if ! n="$(iniq -p "$name" -n "$decrypted")"; then
+        echo "Section not found: $name" >&2
+        exit 2
+    fi
 
     while (( i < n )); do
         opts="$(iniq -p "$name" -f '%k=%v' -i $i "$decrypted")"
