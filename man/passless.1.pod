@@ -35,6 +35,10 @@ Edit config file.
 
 Get password of I<SITE> with given login.
 
+=item B<-L>
+
+List sites and logins.
+
 =item B<-c>
 
 Copy password to clipboard. Requires a site to be specified.
