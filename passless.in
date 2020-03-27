@@ -79,7 +79,7 @@ get_section() {
     fi
 
     while (( i < n )); do
-        opts="$(iniq -p "$name" -f '%k=%v' -i $i "$decrypted")"
+        opts="$(iniq -p "$name" -i $i "$decrypted")"
         [[ -z "$1" ]] && break
         while IFS='=' read -r k v; do
             [[ "$k" == login && "$v" == "$1" ]] && break
