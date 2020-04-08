@@ -166,5 +166,5 @@ if ${show_login-false}; then
         }' <<< "$line"
     done < <(iniq -o "$decrypted")
 else
-    iniq -d "$decrypted"
+    iniq "$decrypted"
 fi
