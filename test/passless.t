@@ -44,6 +44,7 @@ test "$(passless master.net)" = "$(lesspass master.net login best_password)"
 '
 
 test_expect_success 'Get site by login' '
+test "$(passless -l login1 samesite.com)" = "$(lesspass samesite.com login1)" &&
 test "$(passless -l login2 samesite.com)" = "$(lesspass samesite.com login2 \
     --no-symbols)"
 '

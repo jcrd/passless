@@ -82,7 +82,10 @@ get_section() {
         opts="$(iniq -p "$name" -i $i "$decrypted")"
         [[ -z "$1" ]] && break
         while IFS='=' read -r k v; do
-            [[ "$k" == login && "$v" == "$1" ]] && break
+            if [[ "$k" == login && "$v" == "$1" ]]; then
+                echo "$opts"
+                return
+            fi
         done <<< "$opts"
         i=$((i + 1))
     done
