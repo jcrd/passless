@@ -119,4 +119,4 @@ L<https://github.com/jcrd/passless/issues>
 
 =head1 COPYRIGHT
 
-Copyright 2019 James Reed. passless is licensed under the MIT License.
+Copyright 2019-2020 James Reed. passless is licensed under the MIT License.
