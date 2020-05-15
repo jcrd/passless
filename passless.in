@@ -163,7 +163,7 @@ if ${show_login-false}; then
             while (x<=NF) {
                 split($x,a,"=")
                 if (a[1] == "section") printf "%s", a[2]
-                else if (a[1] == "login") printf " (%s)\n", a[2]
+                else if (a[1] == "login") printf " | %s\n", a[2]
                 x++
             }
         }' <<< "$line"

@@ -22,11 +22,11 @@ samesite.com"
 '
 
 test_expect_success 'List sites and logins' '
-test "$(passless -L)" = "example.com (myusername)
-false.com (name)
-master.net (login)
-samesite.com (login1)
-samesite.com (login2)"
+test "$(passless -L)" = "example.com | myusername
+false.com | name
+master.net | login
+samesite.com | login1
+samesite.com | login2"
 '
 
 test_expect_success 'Test example.com' '
