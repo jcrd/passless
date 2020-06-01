@@ -1,0 +1,5 @@
+#!/bin/sh
+
+s="$(passless -L | rofi -dmenu -p 'passless')"
+[ -z "$s" ] && exit 1
+passless -c -l "${s##*| }" "${s%% |*}"
