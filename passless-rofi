@@ -1,5 +1,6 @@
 #!/bin/sh
 
-s="$(passless -L | rofi -dmenu -p 'passless')"
+sites="$(passless -L)" || exit $?
+s="$(echo "$sites" | rofi -dmenu -p 'passless')"
 [ -z "$s" ] && exit 1
 passless -c -l "${s##*| }" "${s%% |*}"
