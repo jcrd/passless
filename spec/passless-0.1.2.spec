@@ -1,5 +1,5 @@
 Name: passless
-Version: 0.1.1
+Version: 0.1.2
 Release: 1%{?dist}
 Summary: A declarative password manager based on lesspass
 
@@ -42,6 +42,9 @@ make test
 /usr/share/man/man1/%{name}.1.gz
 
 %changelog
+* Wed Jun 10 2020 James Reed <jcrd@tuta.io> - 0.1.2-1
+- Release v0.1.2
+
 * Mon Jun  1 2020 James Reed <jcrd@tuta.io> - 0.1.1-1
 - Release v0.1.1
 - Recommends rofi for using passless-rofi
