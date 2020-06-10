@@ -31,6 +31,9 @@ passless manages a user-edited GPG-encrypted file containing arguments for the l
 %install
 %make_install PREFIX=/usr
 
+%check
+make test
+
 %files
 %license LICENSE
 %doc README.md
