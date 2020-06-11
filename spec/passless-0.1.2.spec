@@ -5,7 +5,7 @@ Summary: A declarative password manager based on lesspass
 
 License: MIT
 URL: https://github.com/jcrd/passless
-Source0: https://github.com/jcrd/passless/archive/v0.1.1.tar.gz
+Source0: https://github.com/jcrd/passless/archive/v0.1.2.tar.gz
 
 BuildArch: noarch
 
