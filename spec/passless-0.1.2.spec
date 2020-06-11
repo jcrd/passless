@@ -11,6 +11,10 @@ BuildArch: noarch
 
 BuildRequires: perl
 
+# Required for testing.
+BuildRequires: iniq
+BuildRequires: python-lesspass
+
 Requires: gnupg2
 Requires: iniq
 Requires: python-lesspass
