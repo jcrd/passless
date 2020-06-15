@@ -1,4 +1,4 @@
-# passless [![CircleCI](https://circleci.com/gh/jcrd/passless.svg?style=svg)](https://circleci.com/gh/jcrd/passless)
+# passless [![CircleCI](https://circleci.com/gh/jcrd/passless.svg?style=svg)](https://circleci.com/gh/jcrd/passless) [![Copr build status](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/)
 
 passless manages a user-edited GPG-encrypted file containing arguments for the
 [lesspass](https://pypi.org/project/lesspass/) command-line client.
