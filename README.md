@@ -1,7 +1,17 @@
-# passless [![CircleCI](https://circleci.com/gh/jcrd/passless.svg?style=svg)](https://circleci.com/gh/jcrd/passless) [![Copr build status](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/)
+# passless [![CircleCI](https://circleci.com/gh/jcrd/passless.svg?style=svg)](https://circleci.com/gh/jcrd/passless)
 
 passless manages a user-edited GPG-encrypted file containing arguments for the
 [lesspass](https://pypi.org/project/lesspass/) command-line client.
+
+## Packages
+
+* **RPM** package available from [copr][1]. [![Copr build status](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jcrd/passless/package/passless/)
+
+  Install with:
+  ```
+  dnf copr enable jcrd/passless
+  dnf install passless
+  ```
 
 ## Usage
 
@@ -76,3 +86,5 @@ Corresponds to **lesspass** _--symbols_ or _--no-symbols_ flags.
 ## License
 
 This project is licensed under the MIT License (see [LICENSE](LICENSE)).
+
+[1]: https://copr.fedorainfracloud.org/coprs/jcrd/passless/
