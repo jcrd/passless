@@ -1,1 +1,7 @@
 FROM supplantr/shell-toolbox
+
+RUN dnf copr enable -y jcrd/iniq
+RUN dnf copr enable -y jcrd/lesspass
+
+RUN dnf install -y iniq
+RUN dnf install -y python-lesspass
