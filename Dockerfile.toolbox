@@ -5,3 +5,4 @@ RUN dnf copr enable -y jcrd/lesspass
 
 RUN dnf install -y iniq
 RUN dnf install -y python-lesspass
+RUN dnf install -y perl
