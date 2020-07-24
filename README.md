@@ -88,6 +88,10 @@ Corresponds to **lesspass** _--digits_ or _--no-digits_ flags.
 Include symbols in password if set to `true`.
 Corresponds to **lesspass** _--symbols_ or _--no-symbols_ flags.
 
+* `password=`
+
+Use this password instead of generating one.
+
 ## License
 
 This project is licensed under the MIT License (see [LICENSE](LICENSE)).

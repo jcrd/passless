@@ -104,6 +104,13 @@ generate_password() {
 
     while IFS='=' read -r k v; do
         case $k in
+            password)
+                if ${copy-false}; then
+                    echo "$v" | xsel -ib
+                else
+                    echo "$v"
+                fi
+                exit ;;
             master_password) master="$v" ;;
             login) login="$v" ;;
             length) args+=" -L $v" ;;

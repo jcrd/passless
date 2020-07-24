@@ -111,6 +111,10 @@ Corresponds to B<lesspass> I<--digits> or I<--no-digits> flags.
 Include symbols in password if set to I<true>.
 Corresponds to B<lesspass> I<--symbols> or I<--no-symbols> flags.
 
+=item I<password=>
+
+Use this password instead of generating one.
+
 =back
 
 =head1 AUTHOR

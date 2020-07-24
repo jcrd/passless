@@ -18,7 +18,8 @@ test "$(passless)" = "example.com
 false.com
 master.net
 samesite.com
-samesite.com"
+samesite.com
+badsite.com"
 '
 
 test_expect_success 'List sites and logins' '
@@ -26,7 +27,8 @@ test "$(passless -L)" = "example.com | myusername
 false.com | name
 master.net | login
 samesite.com | login1
-samesite.com | login2"
+samesite.com | login2
+badsite.com | username"
 '
 
 test_expect_success 'Test example.com' '
@@ -47,6 +49,10 @@ test_expect_success 'Get site by login' '
 test "$(passless -l login1 samesite.com)" = "$(lesspass samesite.com login1)" &&
 test "$(passless -l login2 samesite.com)" = "$(lesspass samesite.com login2 \
     --no-symbols)"
+'
+
+test_expect_success 'Test predefined password' '
+test "$(passless badsite.com)" = "testpass"
 '
 
 test_done
