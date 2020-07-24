@@ -71,6 +71,11 @@ See below for valid keys.
 
 =over
 
+=item I<master_password=>
+
+The master password.
+Corresponds to B<lesspass> I<MASTER_PASSWORD> argument.
+
 =item I<login=>
 
 The site login.

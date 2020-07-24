@@ -48,6 +48,11 @@ counter=2
 
 See below for valid keys.
 
+* `master_password=`
+
+The master password.
+Corresponds to **lesspass** _MASTER_PASSWORD_ argument.
+
 * `login=`
 
 The site login.
