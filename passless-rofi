@@ -3,4 +3,4 @@
 sites="$(passless -L)" || exit $?
 s="$(echo "$sites" | rofi -dmenu -p 'passless')"
 [ -z "$s" ] && exit 1
-passless -c -l "${s##*| }" "${s%% |*}"
+passless -c -l "${s##*| }" "${s%% |*}" > /dev/null
