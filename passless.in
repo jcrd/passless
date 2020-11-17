@@ -65,7 +65,6 @@ decrypt() {
     if [[ -n "${PASSLESS_PLAIN_FILE-}" ]]; then
         cat "$config" > "$decrypted"
     else
-        git_pull
         gpg -d "$config" > "$decrypted" 2> /dev/null
 
         decrypted_checksum=$(mktemp)
@@ -94,6 +93,7 @@ edit_config() {
         decrypted=$(mktemp)
         echo "$default_config" > "$decrypted"
     else
+        git_pull
         decrypt
     fi
     $EDITOR "$decrypted"

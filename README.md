@@ -30,8 +30,9 @@ options:
 
 ### Automatic sync with remote git repository
 If passless detects that its configuration file exists in a git repository,
-it will attempt to pull changes from remote before decryption and commit and
-push changes after encryption.
+it will:
+* pull changes from remote before editing
+* commit and push changes after editing and re-encryption
 
 Set up a local git repository using the remote `origin` and branch `master`:
 ```sh
