@@ -12,10 +12,23 @@ uppercase=true
 digits=true
 symbols=true'
 
-config="${PASSLESS_CONFIG:-$HOME/.passless.conf.gpg}"
+if [[ -n "${PASSLESS_CONFIG-}" ]]; then
+    git_repo="${PASSLESS_CONFIG%/*}"
+    config="$PASSLESS_CONFIG"
+else
+    git_repo="${XDG_CONFIG_HOME:-$HOME/.config}"/passless
+    config="$git_repo"/passless.conf.gpg
+fi
+
+if command -v git > /dev/null && [[ -e "$git_repo"/.git ]]; then
+    git_enabled=true
+else
+    git_enabled=false
+fi
 
 decrypted=
-trap 'rm -f "$decrypted"' EXIT INT TERM
+decrypted_checksum=
+trap 'rm -f "$decrypted" "$decrypted_checksum"' EXIT INT TERM
 
 usage() {
     echo 'usage: passless [options] [SITE]
@@ -31,14 +44,38 @@ options:
   -v         Show version'
 }
 
+git_pull() {
+    $git_enabled || return 0
+    git -C "$git_repo" pull >&2
+}
+
+git_commit() {
+    $git_enabled || return 0
+    git -C "$git_repo" add "$config" && git -C "$git_repo" commit
+}
+
+git_push() {
+    $git_enabled || return 0
+    git -C "$git_repo" push
+}
+
 decrypt() {
     decrypted=$(mktemp)
 
     if [[ -n "${PASSLESS_PLAIN_FILE-}" ]]; then
         cat "$config" > "$decrypted"
     else
+        git_pull
         gpg -d "$config" > "$decrypted" 2> /dev/null
+
+        decrypted_checksum=$(mktemp)
+        sha256sum "$decrypted" > "$decrypted_checksum"
     fi
+}
+
+checksum() {
+    [[ -e "$decrypted_checksum" ]] && sha256sum -c "$decrypted_checksum" \
+        --status
 }
 
 encrypt() {
@@ -46,8 +83,9 @@ encrypt() {
 
     if [[ -n "${PASSLESS_PLAIN_FILE-}" ]]; then
         cat "$f" > "$config"
-    else
-        gpg --default-recipient-self -o "$config" -e "$f"
+    elif ! checksum; then
+        gpg --default-recipient-self --yes -o "$config" -e "$f"
+        git_commit && git_push
     fi
 }
 

@@ -51,9 +51,9 @@ Show version.
 
 =head1 CONFIGURATION
 
-The configuration file F<~/.passless.conf.gpg> is an INI file where section
-names are sites and section keys correspond to B<lesspass> command-line
-arguments.
+The configuration file F<~/.config/passless/passless.conf.gpg> is an INI file
+where section names are sites and section keys correspond to B<lesspass>
+command-line arguments.
 
 If a configuration file doesn't exist, the I<-e> flag will create one using a
 default template.

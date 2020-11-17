@@ -28,6 +28,19 @@ options:
   -v         Show version
 ```
 
+### Automatic sync with remote git repository
+If passless detects that its configuration file exists in a git repository,
+it will attempt to pull changes from remote before decryption and commit and
+push changes after encryption.
+
+Set up a local git repository using the remote `origin` and branch `master`:
+```sh
+cd ~/.config/passless
+git init
+git remote add origin <remote-url>
+git branch --set-upstream-to origin/master
+```
+
 ## Configuration
 
 The configuration file is an INI file where section names are sites
