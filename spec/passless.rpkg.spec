@@ -25,6 +25,7 @@ Requires: python-lesspass
 Requires: xsel
 
 Recommends: rofi
+Recommends: git
 
 %global debug_package %{nil}
 
