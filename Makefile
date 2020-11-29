@@ -38,4 +38,4 @@ test-podman: clean
 	podman run --rm -v $(shell pwd):/passless:Z -w /passless \
 		supplantr/passless make test
 
-.PHONY: all install uninstall clean test
+.PHONY: all install uninstall clean test test-podman
