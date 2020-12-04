@@ -43,6 +43,10 @@ List sites and logins.
 
 Copy password to clipboard. Requires a site to be specified.
 
+=item B<-s>
+
+Show git commit log.
+
 =item B<-v>
 
 Show version.

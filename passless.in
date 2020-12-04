@@ -41,6 +41,7 @@ options:
   -l LOGIN   Get password of SITE with given login
   -L         List sites and logins
   -c         Copy password to clipboard
+  -s         Show git commit log
   -v         Show version'
 }
 
@@ -57,6 +58,11 @@ git_commit() {
 git_push() {
     $git_enabled || return 0
     git -C "$git_repo" push
+}
+
+git_log() {
+    $git_enabled || return 0
+    git -C "$git_repo" log --oneline
 }
 
 decrypt() {
@@ -169,7 +175,7 @@ generate_password() {
     exit
 }
 
-while getopts ':hf:i:el:Lcv' opt; do
+while getopts ':hf:i:el:Lcsv' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
@@ -178,6 +184,7 @@ while getopts ':hf:i:el:Lcv' opt; do
         l) with_login="$OPTARG" ;;
         L) show_login=true ;;
         c) copy=true ;;
+        s) git_log; exit ;;
         v) echo "$VERSION"; exit ;;
         *) usage >&2; exit 2
     esac

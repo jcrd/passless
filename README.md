@@ -25,6 +25,7 @@ options:
   -e         Edit config file
   -l LOGIN   Get password of SITE with given login
   -c         Copy password to clipboard
+  -s         Show git commit log
   -v         Show version
 ```
 
