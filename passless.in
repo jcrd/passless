@@ -42,6 +42,7 @@ options:
   -L         List sites and logins
   -c         Copy password to clipboard
   -s         Show git commit log
+  -p         Do not push commits to git remote
   -v         Show version'
 }
 
@@ -90,7 +91,10 @@ encrypt() {
         cat "$f" > "$config"
     elif ! checksum; then
         gpg --default-recipient-self --yes -o "$config" -e "$f"
-        git_commit && git_push
+        git_commit
+        if ${git_do_push-true}; then
+            git_push
+        fi
     fi
 }
 
@@ -175,7 +179,7 @@ generate_password() {
     exit
 }
 
-while getopts ':hf:i:el:Lcsv' opt; do
+while getopts ':hf:i:el:Lcspv' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
@@ -185,6 +189,7 @@ while getopts ':hf:i:el:Lcsv' opt; do
         L) show_login=true ;;
         c) copy=true ;;
         s) git_log; exit ;;
+        p) git_do_push=false ;;
         v) echo "$VERSION"; exit ;;
         *) usage >&2; exit 2
     esac

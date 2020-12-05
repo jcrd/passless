@@ -26,6 +26,7 @@ options:
   -l LOGIN   Get password of SITE with given login
   -c         Copy password to clipboard
   -s         Show git commit log
+  -p         Do not push commits to git remote
   -v         Show version
 ```
 
@@ -33,7 +34,9 @@ options:
 If passless detects that its configuration file exists in a git repository,
 it will:
 * pull changes from remote before editing
-* commit and push changes after editing and re-encryption
+* commit after editing and re-encryption
+* push commits unless the `-p` flag is present
+  (allows amending commits before push)
 
 Set up a local git repository using the remote `origin` and branch `master`:
 ```sh

@@ -47,6 +47,10 @@ Copy password to clipboard. Requires a site to be specified.
 
 Show git commit log.
 
+=item B<-p>
+
+Do not push commits to git remote.
+
 =item B<-v>
 
 Show version.
