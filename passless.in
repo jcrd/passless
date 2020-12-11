@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-readonly VERSION=
+readonly VERSION=@VERSION
 
 readonly default_config='[DEFAULT]
 lowercase=true

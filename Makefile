@@ -10,7 +10,7 @@ MANPAGE = passless.1
 all: passless $(MANPAGE)
 
 passless: passless.in
-	sed "s/VERSION=/VERSION=$(VERSION)/" passless.in > passless
+	sed "s/@VERSION/$(VERSION)/" passless.in > passless
 	chmod +x passless
 
 $(MANPAGE): man/$(MANPAGE).pod
