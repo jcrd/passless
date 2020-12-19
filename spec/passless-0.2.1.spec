@@ -1,11 +1,11 @@
 Name: passless
-Version: 0.2.0
+Version: 0.2.1
 Release: 1%{?dist}
 Summary: A declarative password manager based on lesspass
 
 License: MIT
 URL: https://github.com/jcrd/passless
-Source0: https://github.com/jcrd/passless/archive/v0.2.0.tar.gz
+Source0: https://github.com/jcrd/passless/archive/v0.2.1.tar.gz
 
 BuildArch: noarch
 
@@ -50,6 +50,9 @@ make test
 /usr/share/man/man1/%{name}.1.gz
 
 %changelog
+* Fri Dec 18 2020 James Reed <jcrd@tuta.io> - 0.2.1-1
+- Release v0.2.1
+
 * Sat Nov 28 2020 James Reed <jcrd@tuta.io> - 0.2.0-1
 - Release v0.2.0
 
