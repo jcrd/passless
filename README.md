@@ -1,4 +1,4 @@
-# passless [![CircleCI](https://circleci.com/gh/jcrd/passless.svg?style=svg)](https://circleci.com/gh/jcrd/passless)
+# passless ![test](https://github.com/jcrd/passless/actions/workflows/test.yml/badge.svg)
 
 passless manages a user-edited GPG-encrypted file containing arguments for the
 [lesspass](https://pypi.org/project/lesspass/) command-line client.
