@@ -179,17 +179,17 @@ generate_password() {
     exit
 }
 
-while getopts ':hf:i:el:Lcspv' opt; do
+while getopts ':hf:i:l:Lcpsev' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
         i) encrypt "$OPTARG" ;;
-        e) edit_config; exit ;;
         l) with_login="$OPTARG" ;;
         L) show_login=true ;;
         c) copy=true ;;
-        s) git_log; exit ;;
         p) git_do_push=false ;;
+        s) git_log; exit ;;
+        e) edit_config; exit ;;
         v) echo "$VERSION"; exit ;;
         *) usage >&2; exit 2
     esac
