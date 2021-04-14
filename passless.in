@@ -189,11 +189,16 @@ while getopts ':hf:i:l:Lcpsev' opt; do
         c) copy=true ;;
         p) git_do_push=false ;;
         s) git_log; exit ;;
-        e) edit_config; exit ;;
+        e) edit=true ;;
         v) echo "$VERSION"; exit ;;
         *) usage >&2; exit 2
     esac
 done
+
+if ${edit-false}; then
+    edit_config
+    exit
+fi
 
 shift $((OPTIND - 1))
 
