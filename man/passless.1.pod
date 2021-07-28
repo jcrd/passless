@@ -51,6 +51,10 @@ Show git commit log.
 
 Do not push commits to git remote.
 
+=item B<-P>
+
+Do not pull from git remote before editing.
+
 =item B<-v>
 
 Show version.

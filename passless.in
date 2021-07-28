@@ -43,6 +43,7 @@ options:
   -c         Copy password to clipboard
   -s         Show git commit log
   -p         Do not push commits to git remote
+  -P         Do not pull from git remote before editing
   -v         Show version'
 }
 
@@ -103,7 +104,9 @@ edit_config() {
         decrypted=$(mktemp)
         echo "$default_config" > "$decrypted"
     else
-        git_pull
+        if ${git_do_pull-true}; then
+            git_pull
+        fi
         decrypt
     fi
     $EDITOR "$decrypted"
@@ -179,7 +182,7 @@ generate_password() {
     exit
 }
 
-while getopts ':hf:i:l:Lcpsev' opt; do
+while getopts ':hf:i:l:LcpPsev' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
@@ -188,6 +191,7 @@ while getopts ':hf:i:l:Lcpsev' opt; do
         L) show_login=true ;;
         c) copy=true ;;
         p) git_do_push=false ;;
+        P) git_do_pull=false ;;
         s) git_log; exit ;;
         e) edit=true ;;
         v) echo "$VERSION"; exit ;;

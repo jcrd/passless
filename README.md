@@ -27,6 +27,7 @@ options:
   -c         Copy password to clipboard
   -s         Show git commit log
   -p         Do not push commits to git remote
+  -P         Do not pull from git remote before editing
   -v         Show version
 ```
 
