@@ -26,7 +26,7 @@ options:
   -l LOGIN   Get password of SITE with given login
   -c         Copy password to clipboard
   -s         Show git commit log
-  -p         Do not push commits to git remote
+  -p         Push commits to git remote
   -P         Do not pull from git remote before editing
   -v         Show version
 ```

@@ -42,7 +42,7 @@ options:
   -L         List sites and logins
   -c         Copy password to clipboard
   -s         Show git commit log
-  -p         Do not push commits to git remote
+  -p         Push commits to git remote
   -P         Do not pull from git remote before editing
   -v         Show version'
 }
@@ -93,7 +93,7 @@ encrypt() {
     elif ! checksum; then
         gpg --default-recipient-self --yes -o "$config" -e "$f"
         git_commit
-        if ${git_do_push-true}; then
+        if ${git_do_push-false}; then
             git_push
         fi
     fi
@@ -190,7 +190,7 @@ while getopts ':hf:i:l:LcpPsev' opt; do
         l) with_login="$OPTARG" ;;
         L) show_login=true ;;
         c) copy=true ;;
-        p) git_do_push=false ;;
+        p) git_do_push=true ;;
         P) git_do_pull=false ;;
         s) git_log; exit ;;
         e) edit=true ;;
