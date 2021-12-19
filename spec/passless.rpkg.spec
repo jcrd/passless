@@ -1,12 +1,12 @@
-Name: {{{ git_name name="passless" }}}
-Version: {{{ git_version lead="$(git tag | sed -n 's/^v//p' | sort --version-sort -r | head -n1)" }}}
+Name: {{{ git_cwd_name name="passless" }}}
+Version: {{{ git_cwd_version lead="$(git tag | sed -n 's/^v//p' | sort --version-sort -r | head -n1)" }}}
 Release: 1%{?dist}
 Summary: A declarative password manager based on lesspass
 
 License: MIT
 URL: https://github.com/jcrd/passless
-VCS: {{{ git_vcs }}}
-Source0: {{{ git_pack }}}
+VCS: {{{ git_cwd_vcs }}}
+Source0: {{{ git_cwd_pack }}}
 
 BuildArch: noarch
 
@@ -33,7 +33,7 @@ Recommends: git
 passless manages a user-edited GPG-encrypted file containing arguments for the lesspass command-line client.
 
 %prep
-{{{ git_setup_macro }}}
+{{{ git_cwd_setup_macro }}}
 
 %build
 %make_build PREFIX=/usr
@@ -52,4 +52,4 @@ make test
 /usr/share/man/man1/%{name}.1.gz
 
 %changelog
-{{{ git_changelog }}}
+{{{ git_cwd_changelog }}}
