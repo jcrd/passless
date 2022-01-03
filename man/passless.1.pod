@@ -33,7 +33,7 @@ Copy password to clipboard. Requires a site to be specified.
 
 =item B<-p>
 
-Do not push commits to git remote.
+Push commits to git remote.
 
 =item B<-P>
 

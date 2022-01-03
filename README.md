@@ -39,7 +39,7 @@ If passless detects that its configuration file exists in a git repository,
 it will:
 * pull changes from remote before editing
 * commit after editing and re-encryption
-* push commits unless the `-p` flag is present
+* push commits when the `-p` flag is present
   (allows amending commits before push)
 
 Set up a local git repository using the remote `origin` and branch `master`:
