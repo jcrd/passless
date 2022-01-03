@@ -46,6 +46,7 @@ commands:
   edit          Edit config file
   list          List sites and logins
   log           Show git commit log
+  status        Show git status
   push          Push commits to git remote
   pull          Pull commits from git remote
   encrypt FILE  Encrypt existing file'
@@ -69,6 +70,11 @@ git_push() {
 git_log() {
     $git_enabled || return 0
     git -C "$git_repo" log --oneline
+}
+
+git_status() {
+    $git_enabled || return 0
+    git -C "$git_repo" status
 }
 
 decrypt() {
@@ -221,6 +227,7 @@ case "${1-}" in
     edit) edit_config; exit ;;
     list) shift; show_login=true ;;
     log) git_log; exit ;;
+    status) git_status; exit ;;
     push) git_push; exit ;;
     pull) git_pull; exit ;;
 esac

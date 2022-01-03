@@ -61,6 +61,10 @@ List sites and logins.
 
 Show git commit log.
 
+=item status
+
+Show git status.
+
 =item push
 
 Push commits to git remote.

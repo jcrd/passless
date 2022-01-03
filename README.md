@@ -31,6 +31,7 @@ commands:
   edit          Edit config file
   list          List sites and logins
   log           Show git commit log
+  status        Show git status
   push          Push commits to git remote
   pull          Pull commits from git remote
   encrypt FILE  Encrypt existing file
