@@ -33,7 +33,7 @@ Copy password to clipboard. Requires a site to be specified.
 
 =item B<-p>
 
-Push commits to git remote.
+Push commits to git remote after editing.
 
 =item B<-P>
 
@@ -60,6 +60,14 @@ List sites and logins.
 =item log
 
 Show git commit log.
+
+=item push
+
+Push commits to git remote.
+
+=item pull
+
+Pull commits from git remote.
 
 =item encrypt I<FILE>
 

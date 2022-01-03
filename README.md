@@ -23,7 +23,7 @@ options:
   -f CONFIG     Path to config file
   -l LOGIN      Get password of SITE with given login
   -c            Copy password to clipboard
-  -p            Push commits to git remote
+  -p            Push commits to git remote after editing
   -P            Do not pull from git remote before editing
   -v            Show version
 
@@ -31,6 +31,8 @@ commands:
   edit          Edit config file
   list          List sites and logins
   log           Show git commit log
+  push          Push commits to git remote
+  pull          Pull commits from git remote
   encrypt FILE  Encrypt existing file
 ```
 

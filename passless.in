@@ -38,7 +38,7 @@ options:
   -f CONFIG     Path to config file
   -l LOGIN      Get password of SITE with given login
   -c            Copy password to clipboard
-  -p            Push commits to git remote
+  -p            Push commits to git remote after editing
   -P            Do not pull from git remote before editing
   -v            Show version
 
@@ -46,6 +46,8 @@ commands:
   edit          Edit config file
   list          List sites and logins
   log           Show git commit log
+  push          Push commits to git remote
+  pull          Pull commits from git remote
   encrypt FILE  Encrypt existing file'
 }
 
@@ -219,6 +221,8 @@ case "${1-}" in
     edit) edit_config; exit ;;
     list) shift; show_login=true ;;
     log) git_log; exit ;;
+    push) git_push; exit ;;
+    pull) git_pull; exit ;;
 esac
 
 [[ $# -gt 0 ]] && generate_password "$1" "${with_login-}"
