@@ -23,7 +23,7 @@ badsite.com"
 '
 
 test_expect_success 'List sites and logins' '
-test "$(passless -L)" = "example.com | myusername
+test "$(passless list)" = "example.com | myusername
 false.com | name
 master.net | login
 samesite.com | login1

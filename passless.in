@@ -31,20 +31,22 @@ decrypted_checksum=
 trap 'rm -f "$decrypted" "$decrypted_checksum"' EXIT INT TERM
 
 usage() {
-    echo 'usage: passless [options] [SITE]
+    echo 'usage: passless [options] [command] [SITE]
 
 options:
-  -h         Show help message
-  -f CONFIG  Path to config file
-  -i FILE    Encrypt existing file
-  -e         Edit config file
-  -l LOGIN   Get password of SITE with given login
-  -L         List sites and logins
-  -c         Copy password to clipboard
-  -s         Show git commit log
-  -p         Push commits to git remote
-  -P         Do not pull from git remote before editing
-  -v         Show version'
+  -h            Show help message
+  -f CONFIG     Path to config file
+  -l LOGIN      Get password of SITE with given login
+  -c            Copy password to clipboard
+  -p            Push commits to git remote
+  -P            Do not pull from git remote before editing
+  -v            Show version
+
+commands:
+  edit          Edit config file
+  list          List sites and logins
+  log           Show git commit log
+  encrypt FILE  Encrypt existing file'
 }
 
 git_pull() {
@@ -182,34 +184,42 @@ generate_password() {
     exit
 }
 
-while getopts ':hf:i:l:LcpPsev' opt; do
+while getopts ':hf:l:cpPv' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
-        i) encrypt "$OPTARG" ;;
         l) with_login="$OPTARG" ;;
-        L) show_login=true ;;
         c) copy=true ;;
         p) git_do_push=true ;;
         P) git_do_pull=false ;;
-        s) git_log; exit ;;
-        e) edit=true ;;
         v) echo "$VERSION"; exit ;;
         *) usage >&2; exit 2
     esac
 done
 
-if ${edit-false}; then
-    edit_config
+shift $((OPTIND - 1))
+
+if [[ "${1-}" == encrypt ]]; then
+    shift
+    if [[ -z "${1-}" ]]; then
+        echo "'encrypt' requires a file to be specified" >&2
+        usage >&2
+        exit 2
+    fi
+    encrypt "$1"
     exit
 fi
 
-shift $((OPTIND - 1))
-
 if [[ ! -e "$config" ]]; then
-    echo "$config does not exist; use '-e' to create it" >&2
+    echo "$config does not exist; use 'edit' to create it" >&2
     exit 1
 fi
+
+case "${1-}" in
+    edit) edit_config; exit ;;
+    list) shift; show_login=true ;;
+    log) git_log; exit ;;
+esac
 
 [[ $# -gt 0 ]] && generate_password "$1" "${with_login-}"
 

@@ -4,7 +4,7 @@ passless - declarative password manager
 
 =head1 SYNOPSIS
 
-B<passless> [options] [SITE]
+B<passless> [options] [command] [SITE]
 
 =head1 DESCRIPTION
 
@@ -23,29 +23,13 @@ Show help message.
 
 Path to configuration file.
 
-=item B<-i> I<FILE>
-
-Encrypt existing file.
-
-=item B<-e>
-
-Edit config file.
-
 =item B<-l> I<LOGIN>
 
 Get password of I<SITE> with given login.
 
-=item B<-L>
-
-List sites and logins.
-
 =item B<-c>
 
 Copy password to clipboard. Requires a site to be specified.
-
-=item B<-s>
-
-Show git commit log.
 
 =item B<-p>
 
@@ -61,16 +45,39 @@ Show version.
 
 =back
 
+=head1 COMMANDS
+
+=over
+
+=item edit
+
+Edit config file.
+
+=item list
+
+List sites and logins.
+
+=item log
+
+Show git commit log.
+
+=item encrypt I<FILE>
+
+Encrypt existing file.
+
+=back
+
 =head1 CONFIGURATION
 
 The configuration file F<~/.config/passless/passless.conf.gpg> is an INI file
 where section names are sites and section keys correspond to B<lesspass>
 command-line arguments.
 
-If a configuration file doesn't exist, the I<-e> flag will create one using a
-default template.
+If a configuration file doesn't exist, the I<edit> command will create one using
+a default template.
 
-An existing plain configuration file can be encrypted using the I<-i> flag.
+An existing plain configuration file can be encrypted using the I<encrypt>
+command.
 
 Example:
 

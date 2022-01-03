@@ -16,19 +16,22 @@ passless manages a user-edited GPG-encrypted file containing arguments for the
 ## Usage
 
 ```
-usage: passless [options] [SITE]
+usage: passless [options] [command] [SITE]
 
 options:
-  -h         Show help message
-  -f CONFIG  Path to config file
-  -i FILE    Encrypt existing file
-  -e         Edit config file
-  -l LOGIN   Get password of SITE with given login
-  -c         Copy password to clipboard
-  -s         Show git commit log
-  -p         Push commits to git remote
-  -P         Do not pull from git remote before editing
-  -v         Show version
+  -h            Show help message
+  -f CONFIG     Path to config file
+  -l LOGIN      Get password of SITE with given login
+  -c            Copy password to clipboard
+  -p            Push commits to git remote
+  -P            Do not pull from git remote before editing
+  -v            Show version
+
+commands:
+  edit          Edit config file
+  list          List sites and logins
+  log           Show git commit log
+  encrypt FILE  Encrypt existing file
 ```
 
 ### Automatic sync with remote git repository
@@ -52,10 +55,11 @@ git branch --set-upstream-to origin/master
 The configuration file is an INI file where section names are sites
 and section keys correspond to **lesspass** command-line arguments.
 
-If a configuration file doesn't exist, the _-e_ flag will create one using a
-default template.
+If a configuration file doesn't exist, the _edit_ command will create one using
+a default template.
 
-An existing plain configuration file can be encrypted using the _-i_ flag.
+An existing plain configuration file can be encrypted using the _encrypt_
+command.
 
 Example:
 ```
