@@ -31,7 +31,7 @@ decrypted_checksum=
 trap 'rm -f "$decrypted" "$decrypted_checksum"' EXIT INT TERM
 
 usage() {
-    echo 'usage: passless [options] [command] [SITE]
+    echo 'usage: passless [options] [command|SITE]
 
 options:
   -h            Show help message

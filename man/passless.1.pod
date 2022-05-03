@@ -4,7 +4,7 @@ passless - declarative password manager
 
 =head1 SYNOPSIS
 
-B<passless> [options] [command] [SITE]
+B<passless> [options] [command|SITE]
 
 =head1 DESCRIPTION
 

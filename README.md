@@ -16,7 +16,7 @@ passless manages a user-edited GPG-encrypted file containing arguments for the
 ## Usage
 
 ```
-usage: passless [options] [command] [SITE]
+usage: passless [options] [command|SITE]
 
 options:
   -h            Show help message
