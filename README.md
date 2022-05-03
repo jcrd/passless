@@ -22,7 +22,7 @@ options:
   -h            Show help message
   -f CONFIG     Path to config file
   -l LOGIN      Get password of SITE with given login
-  -c            Copy password to clipboard
+  -s            Print password
   -p            Push commits to git remote after editing
   -P            Do not pull from git remote before editing
   -v            Show version

@@ -37,7 +37,7 @@ options:
   -h            Show help message
   -f CONFIG     Path to config file
   -l LOGIN      Get password of SITE with given login
-  -c            Copy password to clipboard
+  -s            Print password
   -p            Push commits to git remote after editing
   -P            Do not pull from git remote before editing
   -v            Show version
@@ -166,10 +166,10 @@ generate_password() {
     while IFS='=' read -r k v; do
         case $k in
             password)
-                if ${copy-false}; then
-                    echo "$v" | xsel -ib
-                else
+                if ${show-false}; then
                     echo "$v"
+                else
+                    echo "$v" | xsel -ib
                 fi
                 exit ;;
             master_password) master="$v" ;;
@@ -186,18 +186,22 @@ generate_password() {
         esac
     done <<< "$opts"
 
+    if ! ${show-false}; then
+        copy=true
+    fi
+
     args="$1 $login $master ${copy+-c} $args"
 
     lesspass $args
     exit
 }
 
-while getopts ':hf:l:cpPv' opt; do
+while getopts ':hf:l:spPv' opt; do
     case "$opt" in
         h) usage; exit ;;
         f) config="$OPTARG" ;;
         l) with_login="$OPTARG" ;;
-        c) copy=true ;;
+        s) show=true ;;
         p) git_do_push=true ;;
         P) git_do_pull=false ;;
         v) echo "$VERSION"; exit ;;
@@ -234,8 +238,8 @@ esac
 
 [[ $# -gt 0 ]] && generate_password "$1" "${with_login-}"
 
-if ${copy-false}; then
-    echo "'-c' requires a site to be specified" >&2
+if ${show-false}; then
+    echo "'-s' requires a site to be specified" >&2
     usage >&2
     exit 2
 fi

@@ -27,9 +27,9 @@ Path to configuration file.
 
 Get password of I<SITE> with given login.
 
-=item B<-c>
+=item B<-s>
 
-Copy password to clipboard. Requires a site to be specified.
+Print password. Requires a site to be specified.
 
 =item B<-p>
 

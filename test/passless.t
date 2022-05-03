@@ -32,27 +32,27 @@ badsite.com | username"
 '
 
 test_expect_success 'Test example.com' '
-test "$(passless example.com)" = "$(lesspass example.com myusername \
+test "$(passless -s example.com)" = "$(lesspass example.com myusername \
     --no-lowercase --length 12 --counter 2)"
 '
 
 test_expect_success 'Test false.com' '
-test "$(passless false.com)" = "$(lesspass false.com name \
+test "$(passless -s false.com)" = "$(lesspass false.com name \
     --no-uppercase --no-symbols --no-digits)"
 '
 
 test_expect_success 'Test master.net' '
-test "$(passless master.net)" = "$(lesspass master.net login best_password)"
+test "$(passless -s master.net)" = "$(lesspass master.net login best_password)"
 '
 
 test_expect_success 'Get site by login' '
-test "$(passless -l login1 samesite.com)" = "$(lesspass samesite.com login1)" &&
-test "$(passless -l login2 samesite.com)" = "$(lesspass samesite.com login2 \
+test "$(passless -s -l login1 samesite.com)" = "$(lesspass samesite.com login1)" &&
+test "$(passless -s -l login2 samesite.com)" = "$(lesspass samesite.com login2 \
     --no-symbols)"
 '
 
 test_expect_success 'Test predefined password' '
-test "$(passless badsite.com)" = "testpass"
+test "$(passless -s badsite.com)" = "testpass"
 '
 
 test_done
