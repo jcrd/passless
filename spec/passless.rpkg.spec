@@ -24,7 +24,6 @@ Requires: iniq >= 0.4.0
 Requires: python-lesspass
 Requires: xsel
 
-Recommends: rofi
 Recommends: git
 
 %global debug_package %{nil}
@@ -48,7 +47,6 @@ make test
 %license LICENSE
 %doc README.md
 /usr/bin/%{name}
-/usr/bin/%{name}-rofi
 /usr/share/man/man1/%{name}.1.gz
 
 %changelog
