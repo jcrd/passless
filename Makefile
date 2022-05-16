@@ -19,13 +19,11 @@ $(MANPAGE): man/$(MANPAGE).pod
 install:
 	mkdir -p $(DESTDIR)$(BINPREFIX)
 	cp -p passless $(DESTDIR)$(BINPREFIX)
-	cp -p passless-rofi $(DESTDIR)$(BINPREFIX)
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
 	cp -p $(MANPAGE) $(DESTDIR)$(MANPREFIX)/man1
 
 uninstall:
 	rm -f $(DESTDIR)$(BINPREFIX)/passless
-	rm -f $(DESTDIR)$(BINPREFIX)/passless-rofi
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/passless.1
 
 clean:
