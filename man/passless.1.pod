@@ -57,6 +57,10 @@ Edit config file.
 
 List sites and logins.
 
+=item find
+
+Select site with fuzzy finder.
+
 =item log
 
 Show git commit log.

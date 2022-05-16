@@ -30,6 +30,7 @@ options:
 commands:
   edit          Edit config file
   list          List sites and logins
+  find          Select site with fuzzy finder
   log           Show git commit log
   status        Show git status
   push          Push commits to git remote

@@ -19,6 +19,7 @@ BuildRequires: python-lesspass
 Requires: bash
 Requires: gawk
 Requires: coreutils
+Requires: fzf
 Requires: gnupg2
 Requires: iniq >= 0.4.0
 Requires: python-lesspass
