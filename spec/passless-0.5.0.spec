@@ -1,30 +1,31 @@
 Name: passless
-Version: 0.4.0
+Version: 0.5.0
 Release: 1%{?dist}
 Summary: A declarative password manager based on lesspass
 
 License: MIT
 URL: https://github.com/jcrd/passless
-Source0: https://github.com/jcrd/passless/archive/v0.4.0.tar.gz
+Source0: https://github.com/jcrd/passless/archive/v0.5.0.tar.gz
 
 BuildArch: noarch
 
 BuildRequires: perl
 
 # Required for testing.
-BuildRequires: iniq
+BuildRequires: iniq >= 0.4.0
 BuildRequires: python-lesspass
 
 Requires: bash
 Requires: gawk
 Requires: coreutils
+Requires: fzf
 Requires: gnupg2
-Requires: iniq
+Requires: iniq >= 0.4.0
 Requires: python-lesspass
-Requires: xsel
 
-Recommends: rofi
 Recommends: git
+Recommends: wl-clipboard
+Recommends: xsel
 
 %global debug_package %{nil}
 
@@ -47,10 +48,12 @@ make test
 %license LICENSE
 %doc README.md
 /usr/bin/%{name}
-/usr/bin/%{name}-rofi
 /usr/share/man/man1/%{name}.1.gz
 
 %changelog
+* Mon May 16 2022 James Reed <james@twiddlingbits.net> - 0.5.0-1
+- Release v0.5.0
+
 * Wed Jan 26 2022 James Reed <james@twiddlingbits.net> - 0.4.0-1
 - Release v0.4.0
 
