@@ -23,9 +23,10 @@ Requires: fzf
 Requires: gnupg2
 Requires: iniq >= 0.4.0
 Requires: python-lesspass
-Requires: xsel
 
 Recommends: git
+Recommends: wl-clipboard
+Recommends: xsel
 
 %global debug_package %{nil}
 

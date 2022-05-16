@@ -55,6 +55,21 @@ commands:
   encrypt FILE  Encrypt existing file'
 }
 
+check_cmd() {
+    command -v "$1" > /dev/null
+}
+
+get_copy_cmd() {
+    if [[ -n "$WAYLAND_DISPLAY" ]] && check_cmd wl-copy; then
+        echo wl-copy
+    elif check_cmd xsel; then
+        echo xsel -ib
+    else
+        echo "Copy command not found: install 'wl-copy' or 'xsel'" >&2
+        exit 1
+    fi
+}
+
 git_pull() {
     $git_enabled || return 0
     git -C "$git_repo" pull >&2
@@ -186,7 +201,7 @@ generate_password() {
                 if ${show-false}; then
                     echo "$v"
                 else
-                    echo "$v" | xsel -ib
+                    echo "$v" | $(get_copy_cmd)
                 fi
                 exit ;;
             master_password) master="$v" ;;
