@@ -258,7 +258,7 @@ if ${show_login-false}; then
                 x++
             }
         }' <<< "$line"
-    done < <(iniq -o "$decrypted")
+    done < <(iniq -O login "$decrypted")
 else
     iniq "$decrypted"
 fi

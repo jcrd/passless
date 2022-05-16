@@ -13,14 +13,14 @@ BuildArch: noarch
 BuildRequires: perl
 
 # Required for testing.
-BuildRequires: iniq
+BuildRequires: iniq >= 0.4.0
 BuildRequires: python-lesspass
 
 Requires: bash
 Requires: gawk
 Requires: coreutils
 Requires: gnupg2
-Requires: iniq
+Requires: iniq >= 0.4.0
 Requires: python-lesspass
 Requires: xsel
 
